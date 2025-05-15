@@ -2,74 +2,38 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Álbum de Audio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background: linear-gradient(to bottom, #000000, #c0c0c0);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .audio-button {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 2px solid white;
-      color: white;
-      padding: 15px 25px;
-      margin: 10px;
-      border-radius: 10px;
-      font-size: 18px;
-      cursor: pointer;
-      width: 90%;
-      max-width: 300px;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .audio-button:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: scale(1.05);
-    }
-
-    audio {
-      display: none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Álbum de Fotos</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Para ti</h1>
 
-  <button class="audio-button" onclick="playAudio('audio1')">Lo que siento por ti</button>
-  <audio id="audio1" src="sentimiento.m4a"></audio>
+  <!-- Login de acceso -->
+  <div id="login-form" class="login-form">
+    <h2>Introduce la contraseña</h2>
+    <input type="password" id="password" placeholder="Contraseña" />
+    <button onclick="checkPassword()">Entrar</button>
+  </div>
 
-  <button class="audio-button" onclick="playAudio('audio2')">Pasado</button>
-  <audio id="audio2" src="pasado.m4a"></audio>
+  <!-- Galería -->
+  <div id="gallery" class="gallery" style="display: none;">
+    <!-- Fotos generadas por JS -->
+  </div>
 
-  <button class="audio-button" onclick="playAudio('audio3')">Presente</button>
-  <audio id="audio3" src="presente.m4a"></audio>
+  <!-- Botón de audio -->
+  <button id="audio-button" onclick="toggleAudio()">🔊</button>
+  <audio id="audio" loop>
+    <source src="audio/your-audio.m4a" type="audio/mp4" />
+  </audio>
 
-  <button class="audio-button" onclick="playAudio('audio4')">Futuro</button>
-  <audio id="audio4" src="futuro.m4a"></audio>
+  <!-- Lightbox para ampliar -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Foto ampliada" />
+      <div id="lightbox-desc" class="lightbox-desc"></div>
+    </div>
+  </div>
 
-  <script>
-    function playAudio(id) {
-      // Pausar cualquier audio que esté sonando
-      document.querySelectorAll('audio').forEach(a => a.pause());
-      const audio = document.getElementById(id);
-      audio.currentTime = 0;
-      audio.play();
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
